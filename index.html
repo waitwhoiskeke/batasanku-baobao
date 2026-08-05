@@ -88,7 +88,7 @@
       pointer-events: none;
     }
 
-    /* NAVIGASI DILAKUKAN TERPISAH PER-HALAMAN AGAR PRESISI */
+    /* NAVIGASI DILAKUKAN TERPISAH PER-HALAMAN DENGAN KALIBRASI TURUN ~0.5CM */
     .desktop-nav {
       position: absolute;
       left: 21%;
@@ -99,15 +99,15 @@
       justify-content: center;
     }
 
-    /* 1. Beranda */
+    /* 1. Beranda (Turun ~0.5 cm agar pas di dalam boks oval putih) */
     #home-panel .desktop-nav { 
-      top: 1.42%; 
+      top: 1.85%; 
       height: 0.65%; 
     }
 
-    /* 3. Edukasi */
+    /* 2. Edukasi (Turun ~0.5 cm agar pas di dalam boks oval putih) */
     #education-panel .desktop-nav { 
-      top: 4.10%; 
+      top: 4.80%; 
       height: 3.40%; 
     }
 
@@ -210,7 +210,6 @@
       gap: clamp(6px, 1vw, 16px);
     }
     #home-panel .social-footer-overlay { top: 96.2%; }
-    #chat-panel .social-footer-overlay { top: 92.4%; }
     #education-panel .social-footer-overlay { top: 85.8%; }
 
     .social-icon-btn {
@@ -240,7 +239,6 @@
       align-items: flex-end;
     }
     #home-panel .newsletter-footer-overlay { top: 95.5%; }
-    #chat-panel .newsletter-footer-overlay { top: 91.0%; }
     #education-panel .newsletter-footer-overlay { top: 83.2%; }
 
     .newsletter-custom-box input {
