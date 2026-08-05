@@ -59,58 +59,6 @@
     button, input { font: inherit; }
     button { -webkit-tap-highlight-color: transparent; }
 
-    /* STICKY GLOBAL NAVBAR (KUNCI AGAR TIDAK NAIK TURUN) */
-    .global-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid #e2e8f0;
-      padding: 10px 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 20px rgba(59, 121, 198, 0.08);
-    }
-
-    .desktop-nav__links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(8px, 2vw, 24px);
-      background: #f0f7ff;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1.5px solid #d0e4ff;
-    }
-
-    .nav-control {
-      padding: 6px 20px;
-      border: 0;
-      border-radius: 999px;
-      color: #355474;
-      background: transparent;
-      font-family: 'Fredoka', sans-serif;
-      font-weight: 600;
-      font-size: clamp(.8rem, 1.1vw, 1.2rem);
-      cursor: pointer;
-      transition: all 180ms ease;
-    }
-
-    .nav-control:hover {
-      color: var(--bao-blue-dark);
-      background: rgba(220, 237, 255, .8);
-    }
-
-    .nav-control.is-active {
-      color: white;
-      background: var(--bao-blue);
-      box-shadow: 0 .2em .6em rgba(47, 103, 173, .3);
-    }
-
-    /* ARTBOARD & CONTAINER */
     .page-panel {
       display: none;
       opacity: 0;
@@ -135,6 +83,58 @@
       height: auto;
       user-select: none;
       pointer-events: none;
+    }
+
+    /* DESKTOP NAVBAR OVERLAY (KALIBRASI PRESISI PAS DI DALAM BOKS OVAL PUTIH) */
+    .desktop-nav {
+      position: absolute;
+      left: 21%;
+      z-index: 30;
+      width: 63%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Posisi top & height disesuaikan dengan rasio gambar masing-masing */
+    #home-panel .desktop-nav { top: 0.38%; height: 0.70%; }
+    #chat-panel .desktop-nav { top: 1.85%; height: 1.80%; }
+    #education-panel .desktop-nav { top: 3.40%; height: 3.40%; }
+
+    .desktop-nav__links {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .nav-control {
+      height: 85%;
+      padding: 0 6%;
+      border: 0;
+      border-radius: 999px;
+      color: #355474;
+      background: transparent;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: clamp(.65rem, 1.15vw, 1.35rem);
+      cursor: pointer;
+      transition: all 180ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-control:hover {
+      color: var(--bao-blue-dark);
+      background: rgba(220, 237, 255, .8);
+    }
+
+    .nav-control.is-active {
+      color: white;
+      background: var(--bao-blue);
+      box-shadow: 0 .25em .7em rgba(47, 103, 173, .26);
     }
 
     /* BERANDA OVERLAYS */
@@ -253,18 +253,18 @@
       box-shadow: 0 0 0 6px rgba(255,255,255,.6);
     }
 
-    /* FOOTER OVERLAYS (LANGSUNG DITUMPUK PADA FOTO ASLI TANPA AREA PUTIH BARU) */
+    /* OVERLAY FOOTER SOSIAL MEDIA & NEWSLETTER (DI NAIKKAN AGAR PAS SEJAJAR DENGAN LOGO BAOBAO KIRI) */
     .social-footer-overlay {
       position: absolute;
-      left: 2.5%;
+      left: 2%;
       z-index: 30;
       display: flex;
       align-items: center;
       gap: clamp(6px, 1vw, 16px);
     }
-    #home-panel .social-footer-overlay { top: 97.4%; }
-    #chat-panel .social-footer-overlay { top: 93.8%; }
-    #education-panel .social-footer-overlay { top: 88.2%; }
+    #home-panel .social-footer-overlay { top: 96.2%; }
+    #chat-panel .social-footer-overlay { top: 92.4%; }
+    #education-panel .social-footer-overlay { top: 85.8%; }
 
     .social-icon-btn {
       width: clamp(28px, 2.2vw, 44px);
@@ -292,9 +292,9 @@
       flex-direction: column;
       align-items: flex-end;
     }
-    #home-panel .newsletter-footer-overlay { top: 96.6%; }
-    #chat-panel .newsletter-footer-overlay { top: 92.2%; }
-    #education-panel .newsletter-footer-overlay { top: 85.5%; }
+    #home-panel .newsletter-footer-overlay { top: 95.5%; }
+    #chat-panel .newsletter-footer-overlay { top: 91.0%; }
+    #education-panel .newsletter-footer-overlay { top: 83.2%; }
 
     .newsletter-custom-box input {
       border: 2px solid var(--bao-blue);
@@ -350,15 +350,6 @@
 
 <body>
 
-  <!-- STICKY NAVBAR GLOBAL (TERKUNCI PRESISI DI ATAS LAYAR) -->
-  <header class="global-header">
-    <nav class="desktop-nav__links">
-      <button class="nav-control is-active" type="button" data-route="home">Beranda</button>
-      <button class="nav-control" type="button" data-route="chat">ChatBot</button>
-      <button class="nav-control" type="button" data-route="education">Edukasi</button>
-    </nav>
-  </header>
-
   <main id="main-content">
 
     <!-- TAB BERANDA -->
@@ -366,13 +357,22 @@
       <div class="artboard">
         <img class="source-art" src="assets/Baobao.Web.Beranda.pdf.png" alt="Beranda BAOBAO" />
 
+        <!-- NAVBAR OVERLAY PRESISI -->
+        <div class="desktop-nav">
+          <nav class="desktop-nav__links">
+            <button class="nav-control is-active" type="button" data-route="home">Beranda</button>
+            <button class="nav-control" type="button" data-route="chat">ChatBot</button>
+            <button class="nav-control" type="button" data-route="education">Edukasi</button>
+          </nav>
+        </div>
+
         <a href="http://wa.me/6287789486660" target="_blank" rel="noopener noreferrer" class="btn-pesan-sekarang">
           Pesan Sekarang
         </a>
 
         <a href="https://drive.google.com/file/d/14apmYp9zz1B1mXphKU5U0OczJDN2eeLA/view?usp=sharing" target="_blank" class="hotspot-testimoni" title="Lihat Testimoni Teman BAOBAO"></a>
 
-        <!-- Ikon Sosmed & Newsletter Ditumpuk di Atas Foto Asli -->
+        <!-- FOOTER SOSMED & NEWSLETTER -->
         <div class="social-footer-overlay">
           <a href="https://www.instagram.com/batasanku/" target="_blank" class="social-icon-btn" title="Instagram">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -399,6 +399,15 @@
     <section class="page-panel" id="chat-panel" data-page="chat">
       <div class="artboard">
         <img class="source-art" src="assets/Baobao.Web.Chatbot.pdf.png" alt="ChatBot BAOBAO" />
+
+        <!-- NAVBAR OVERLAY PRESISI -->
+        <div class="desktop-nav">
+          <nav class="desktop-nav__links">
+            <button class="nav-control" type="button" data-route="home">Beranda</button>
+            <button class="nav-control is-active" type="button" data-route="chat">ChatBot</button>
+            <button class="nav-control" type="button" data-route="education">Edukasi</button>
+          </nav>
+        </div>
 
         <div class="chat-history" id="chat-history" role="log">
           <div class="chat-bubble chat-bubble--bot">
@@ -439,6 +448,15 @@
     <section class="page-panel" id="education-panel" data-page="education">
       <div class="artboard">
         <img class="source-art" src="assets/Baobao.Web.Edukasi.pdf.png" alt="Edukasi BAOBAO" />
+
+        <!-- NAVBAR OVERLAY PRESISI -->
+        <div class="desktop-nav">
+          <nav class="desktop-nav__links">
+            <button class="nav-control" type="button" data-route="home">Beranda</button>
+            <button class="nav-control" type="button" data-route="chat">ChatBot</button>
+            <button class="nav-control is-active" type="button" data-route="education">Edukasi</button>
+          </nav>
+        </div>
 
         <a href="https://drive.google.com/file/d/1ZfoMHIgsI0884acySJlUnU__yABIUrke/view?usp=sharing" target="_blank" class="education-hotspot education-hotspot--video" title="Tonton Video Edukasi"></a>
 
