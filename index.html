@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#3b79c6" />
   <meta name="description" content="BAOBAO membantu anak dan keluarga belajar body safety melalui pengalaman edukasi yang ramah dan interaktif." />
-  <title>BAOBAO — Body-Safety Smart Doll</title>
+  <title>BAOBAO — Body Safety Smart-Doll</title>
 
   <!-- Google Fonts: Fredoka & Sniglet -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -88,7 +88,7 @@
       pointer-events: none;
     }
 
-    /* DESKTOP NAVBAR OVERLAY (KALIBRASI ULAN PAS DALAM OVAL) */
+    /* NAVIGASI DILAKUKAN TERPISAH PER-HALAMAN AGAR PRESISI */
     .desktop-nav {
       position: absolute;
       left: 21%;
@@ -99,9 +99,23 @@
       justify-content: center;
     }
 
-    #home-panel .desktop-nav { top: 0.72%; height: 0.62%; }
-    #chat-panel .desktop-nav { top: 1.85%; height: 1.80%; }
-    #education-panel .desktop-nav { top: 3.40%; height: 3.40%; }
+    /* 1. Beranda */
+    #home-panel .desktop-nav { 
+      top: 1.42%; 
+      height: 0.65%; 
+    }
+
+    /* 2. ChatBot */
+    #chat-panel .desktop-nav { 
+      top: 2.10%; 
+      height: 1.80%; 
+    }
+
+    /* 3. Edukasi */
+    #education-panel .desktop-nav { 
+      top: 4.10%; 
+      height: 3.40%; 
+    }
 
     .desktop-nav__links {
       display: flex;
@@ -296,7 +310,7 @@
       <div class="artboard">
         <img class="source-art" src="assets/Baobao.Web.Beranda.pdf.png" alt="Beranda BAOBAO" />
 
-        <!-- NAVBAR OVERLAY PRESISI -->
+        <!-- NAVBAR OVERLAY PRESISI BERANDA -->
         <div class="desktop-nav">
           <nav class="desktop-nav__links">
             <button class="nav-control is-active" type="button" data-route="home">Beranda</button>
@@ -339,7 +353,7 @@
       <div class="artboard">
         <img class="source-art" src="assets/Baobao.Web.Chatbot.pdf.png" alt="ChatBot BAOBAO" />
 
-        <!-- NAVBAR OVERLAY PRESISI -->
+        <!-- NAVBAR OVERLAY PRESISI CHATBOT -->
         <div class="desktop-nav">
           <nav class="desktop-nav__links">
             <button class="nav-control" type="button" data-route="home">Beranda</button>
@@ -347,9 +361,6 @@
             <button class="nav-control" type="button" data-route="education">Edukasi</button>
           </nav>
         </div>
-
-        <!-- ELFSIGHT AI CHATBOT WIDGET -->
-        <div class="elfsight-app-a41a20bf-d154-48c3-815b-4eae78267537" data-elfsight-app-lazy></div>
 
         <div class="social-footer-overlay">
           <a href="https://www.instagram.com/batasanku/" target="_blank" class="social-icon-btn" title="Instagram">
@@ -378,7 +389,7 @@
       <div class="artboard">
         <img class="source-art" src="assets/Baobao.Web.Edukasi.pdf.png" alt="Edukasi BAOBAO" />
 
-        <!-- NAVBAR OVERLAY PRESISI -->
+        <!-- NAVBAR OVERLAY PRESISI EDUKASI -->
         <div class="desktop-nav">
           <nav class="desktop-nav__links">
             <button class="nav-control" type="button" data-route="home">Beranda</button>
@@ -414,6 +425,9 @@
     </section>
 
   </main>
+
+  <!-- WIDGET ELFSIGHT AI CHATBOT (SISI BISA DIAKSES GLOBAL DARI POJOK BAWAH) -->
+  <div class="elfsight-app-a41a20bf-d154-48c3-815b-4eae78267537" data-elfsight-app-lazy></div>
 
   <!-- MODAL POPUP -->
   <div class="modal-backdrop" id="coming-soon-modal" role="dialog" aria-modal="true">
