@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#3b79c6" />
   <meta name="description" content="BAOBAO membantu anak dan keluarga belajar body safety melalui pengalaman edukasi yang ramah dan interaktif." />
-  <title>BAOBAO — Body Safety Smart-Doll</title>
+  <title>BAOBAO — Body-Safety Smart Doll</title>
 
   <!-- Google Fonts: Fredoka & Sniglet -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet" />
+
+  <!-- Elfsight AI Chatbot Script -->
+  <script src="https://elfsightcdn.com/platform.js" async></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -85,7 +88,7 @@
       pointer-events: none;
     }
 
-    /* DESKTOP NAVBAR OVERLAY (KALIBRASI PRESISI PAS DI DALAM BOKS OVAL PUTIH) */
+    /* DESKTOP NAVBAR OVERLAY (KALIBRASI ULAN PAS DALAM OVAL) */
     .desktop-nav {
       position: absolute;
       left: 21%;
@@ -96,8 +99,7 @@
       justify-content: center;
     }
 
-    /* Posisi top & height disesuaikan dengan rasio gambar masing-masing */
-    #home-panel .desktop-nav { top: 0.38%; height: 0.70%; }
+    #home-panel .desktop-nav { top: 0.72%; height: 0.62%; }
     #chat-panel .desktop-nav { top: 1.85%; height: 1.80%; }
     #education-panel .desktop-nav { top: 3.40%; height: 3.40%; }
 
@@ -173,69 +175,6 @@
       cursor: pointer;
     }
 
-    /* CHATBOT OVERLAYS */
-    .chat-history {
-      position: absolute;
-      left: 10%;
-      top: 32%;
-      z-index: 20;
-      width: 80%;
-      height: 48%;
-      display: flex;
-      flex-direction: column;
-      gap: clamp(8px, 1vw, 16px);
-      overflow-y: auto;
-      padding: 1.5%;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(59,121,198,.45) transparent;
-    }
-
-    .chat-bubble {
-      max-width: 82%;
-      padding: clamp(10px, 1vw, 18px) clamp(14px, 1.2vw, 24px);
-      border-radius: clamp(14px, 1.6vw, 26px);
-      font-size: clamp(.8rem, 1.1vw, 1.3rem);
-      line-height: 1.4;
-      box-shadow: 0 6px 20px rgba(48, 76, 111, .1);
-    }
-    .chat-bubble--bot {
-      align-self: flex-start;
-      color: #2f4c70;
-      background: rgba(255,255,255,.98);
-      border-bottom-left-radius: 4px;
-    }
-    .chat-bubble--user {
-      align-self: flex-end;
-      color: white;
-      background: var(--bao-blue);
-      border-bottom-right-radius: 4px;
-    }
-
-    .chat-form {
-      position: absolute;
-      left: 10%;
-      top: 81.5%;
-      z-index: 24;
-      width: 80%;
-      height: 5.8%;
-      display: flex;
-      align-items: center;
-      gap: 1%;
-      padding: .5% .8% .5% 2%;
-      border-radius: 999px;
-      background: transparent;
-    }
-    .chat-form input {
-      min-width: 0;
-      flex: 1;
-      height: 100%;
-      border: 0;
-      outline: 0;
-      color: #2f4c70;
-      background: transparent;
-      font-size: clamp(.75rem, 1.2vw, 1.4rem);
-    }
-
     /* EDUKASI HOTSPOTS */
     .education-hotspot {
       position: absolute;
@@ -253,7 +192,7 @@
       box-shadow: 0 0 0 6px rgba(255,255,255,.6);
     }
 
-    /* OVERLAY FOOTER SOSIAL MEDIA & NEWSLETTER (DI NAIKKAN AGAR PAS SEJAJAR DENGAN LOGO BAOBAO KIRI) */
+    /* OVERLAY FOOTER SOSIAL MEDIA & NEWSLETTER */
     .social-footer-overlay {
       position: absolute;
       left: 2%;
@@ -409,18 +348,8 @@
           </nav>
         </div>
 
-        <div class="chat-history" id="chat-history" role="log">
-          <div class="chat-bubble chat-bubble--bot">
-            Hai! Aku BAOBAO 👶. Kamu bisa bertanya apa saja seputar batasan tubuh, cara menjaga diri, atau boneka pintar BAOBAO!
-          </div>
-        </div>
-
-        <form class="chat-form" id="chat-form" onsubmit="handleSendChat(event)">
-          <input id="chat-input" type="text" placeholder="Tik sesuatu di sini..." required />
-          <button type="submit" class="w-8 h-8 sm:w-10 sm:h-10 bg-amber-500 rounded-full text-white font-bold flex items-center justify-center shadow hover:bg-amber-600 transition">
-            ➔
-          </button>
-        </form>
+        <!-- ELFSIGHT AI CHATBOT WIDGET -->
+        <div class="elfsight-app-a41a20bf-d154-48c3-815b-4eae78267537" data-elfsight-app-lazy></div>
 
         <div class="social-footer-overlay">
           <a href="https://www.instagram.com/batasanku/" target="_blank" class="social-icon-btn" title="Instagram">
@@ -529,42 +458,6 @@
     }
     function closeModal() {
       document.getElementById('coming-soon-modal').classList.remove('is-open');
-    }
-
-    function handleSendChat(event) {
-      event.preventDefault();
-      const input = document.getElementById('chat-input');
-      const text = input.value.trim();
-      if (!text) return;
-
-      const history = document.getElementById('chat-history');
-
-      const userBubble = document.createElement('div');
-      userBubble.className = 'chat-bubble chat-bubble--user';
-      userBubble.textContent = text;
-      history.appendChild(userBubble);
-
-      input.value = '';
-      history.scrollTop = history.scrollHeight;
-
-      setTimeout(() => {
-        const botBubble = document.createElement('div');
-        botBubble.className = 'chat-bubble chat-bubble--bot';
-        botBubble.textContent = getBotReply(text);
-        history.appendChild(botBubble);
-        history.scrollTop = history.scrollHeight;
-      }, 1000);
-    }
-
-    function getBotReply(msg) {
-      const q = msg.toLowerCase();
-      if (q.includes('baobao') || q.includes('boneka')) {
-        return "BAOBAO adalah boneka pintar (Smart-Doll) berbasis Arduino yang dirancang khusus untuk mengajarkan batasan tubuh (body safety) kepada anak!";
-      } else if (q.includes('sentuh') || q.includes('privasi') || q.includes('aman')) {
-        return "Tubuhmu adalah milikmu! Jika ada orang yang menyentuh bagian pribadi atau membuatmu tidak nyaman, katakan TIDAK dan segera ceritakan ke orang tua atau guru.";
-      } else {
-        return "Terima kasih sudah bertanya! BAOBAO selalu siap menemanimu belajar menjaga diri agar tetap aman dan ceria.";
-      }
     }
 
     function handleSubscribe(event) {
