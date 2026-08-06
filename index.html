@@ -79,6 +79,7 @@
       margin: 0 auto;
       isolation: isolate;
       background: white;
+      overflow: hidden; /* Mencegah scroll ekstra kebocoran di paling bawah web */
     }
     .artboard > .source-art {
       display: block;
@@ -86,9 +87,10 @@
       height: auto;
       user-select: none;
       pointer-events: none;
+      image-rendering: -webkit-optimize-contrast; /* Mengoptimalkan ketajaman gambar */
     }
 
-    /* NAVIGASI OVERLAY DENGAN KALIBRASI KHUSUS PER HALAMAN */
+    /* NAVIGASI DILAKUKAN TERPISAH PER-HALAMAN DENGAN UKURAN TOMBOL UNIFORM */
     .desktop-nav {
       position: absolute;
       left: 21%;
@@ -107,7 +109,7 @@
 
     /* 2. Produk */
     #products-panel .desktop-nav { 
-      top: 1.85%; 
+      top: 2.10%; 
       height: 1.80%; 
     }
 
@@ -126,15 +128,15 @@
     }
 
     .nav-control {
-      height: 85%;
-      padding: 0 5%;
+      height: 88%;
+      padding: 0 7%;
       border: 0;
       border-radius: 999px;
       color: #355474;
       background: transparent;
       font-family: 'Fredoka', sans-serif;
       font-weight: 600;
-      font-size: clamp(.65rem, 1.15vw, 1.35rem);
+      font-size: clamp(.75rem, 1.25vw, 1.45rem); /* Di-gedein sedikit agar lebih jelas */
       cursor: pointer;
       transition: all 180ms ease;
       display: flex;
@@ -199,34 +201,34 @@
       cursor: pointer;
     }
 
-    /* PRODUK OVERLAYS & FLIPBOOK CONTAINER */
+    /* FLIPBOOK CONTAINER (DIKECILKAN ~2CM DAN KE ATAS DIKIT) */
     .flipbook-container {
       position: absolute;
-      left: 8%;
-      top: 42%;
-      width: 84%;
-      height: 48%;
+      left: 11%;
+      top: 38%;
+      width: 78%;
+      height: 42%;
       z-index: 25;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* EDUKASI HOTSPOTS */
+    /* EDUKASI HOTSPOTS (DIKURANGI ~2CM AGAR PAS PADA KOTAK SAAT HOVER) */
     .education-hotspot {
       position: absolute;
       z-index: 22;
       border: 0;
-      border-radius: 36px;
+      border-radius: 28px;
       background: transparent;
       cursor: pointer;
       transition: all 200ms ease;
     }
-    .education-hotspot--video { left: 14%; top: 22%; width: 34%; height: 48%; }
-    .education-hotspot--article { left: 52%; top: 22%; width: 34%; height: 48%; }
+    .education-hotspot--video { left: 16%; top: 25%; width: 30%; height: 38%; }
+    .education-hotspot--article { left: 54%; top: 25%; width: 30%; height: 38%; }
     .education-hotspot:hover {
-      background: rgba(255,255,255,.12);
-      box-shadow: 0 0 0 6px rgba(255,255,255,.6);
+      background: rgba(255,255,255,.15);
+      box-shadow: 0 0 0 5px rgba(255,255,255,.7);
     }
 
     /* OVERLAY FOOTER SOSIAL MEDIA & NEWSLETTER */
@@ -238,9 +240,9 @@
       align-items: center;
       gap: clamp(6px, 1vw, 16px);
     }
-    #home-panel .social-footer-overlay { top: 96.2%; }
-    #products-panel .social-footer-overlay { top: 92.4%; }
-    #education-panel .social-footer-overlay { top: 85.8%; }
+    #home-panel .social-footer-overlay { top: 96.0%; }
+    #products-panel .social-footer-overlay { top: 92.0%; }
+    #education-panel .social-footer-overlay { top: 85.0%; }
 
     .social-icon-btn {
       width: clamp(28px, 2.2vw, 44px);
@@ -268,9 +270,9 @@
       flex-direction: column;
       align-items: flex-end;
     }
-    #home-panel .newsletter-footer-overlay { top: 95.5%; }
-    #products-panel .newsletter-footer-overlay { top: 91.0%; }
-    #education-panel .newsletter-footer-overlay { top: 83.2%; }
+    #home-panel .newsletter-footer-overlay { top: 95.0%; }
+    #products-panel .newsletter-footer-overlay { top: 90.5%; }
+    #education-panel .newsletter-footer-overlay { top: 82.5%; }
 
     .newsletter-custom-box input {
       border: 2px solid var(--bao-blue);
@@ -346,7 +348,6 @@
           Pesan Sekarang
         </a>
 
-        <!-- Hotspot untuk klik bagian produk menuju tab produk -->
         <button type="button" onclick="setRoute('products')" class="hotspot-produk-beranda" title="Lihat Produk Kami"></button>
 
         <a href="https://drive.google.com/file/d/14apmYp9zz1B1mXphKU5U0OczJDN2eeLA/view?usp=sharing" target="_blank" class="hotspot-testimoni" title="Lihat Testimoni Teman BAOBAO"></a>
@@ -356,8 +357,9 @@
           <a href="https://www.instagram.com/batasanku/" target="_blank" class="social-icon-btn" title="Instagram">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
+          <!-- TikTok Logo Fixed Path -->
           <a href="https://www.tiktok.com/@batasanku.id" target="_blank" class="social-icon-btn" title="TikTok">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.29 1.54-1.21 2.52.05.77.46 1.49 1.09 1.93.8.58 1.87.69 2.78.36.91-.32 1.63-1.08 1.83-2.02.08-.43.07-.88.07-1.32.01-4.77 0-9.54.01-14.31z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .56.04.83.12V9.3a6.33 6.33 0 0 0-1-.08 6.34 6.33 0 0 0-6.34 6.34 6.34 6.33 0 0 0 6.34 6.33 6.33 6.33 0 0 0 6.33-6.33V9a8.16 8.16 0 0 0 4.96 1.67V7.21a4.85 4.85 0 0 1-1.01-.52z"/></svg>
           </a>
           <a href="https://lnk.bio/batasanku.id" target="_blank" class="social-icon-btn" title="Toko & Link Resmi">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
@@ -374,7 +376,7 @@
       </div>
     </section>
 
-    <!-- TAB PRODUK (BARU) -->
+    <!-- TAB PRODUK -->
     <section class="page-panel" id="products-panel" data-page="products">
       <div class="artboard">
         <img class="source-art" src="assets/Baobao.Web.Produk.pdf.png" alt="Produk BAOBAO" />
@@ -388,9 +390,9 @@
           </nav>
         </div>
 
-        <!-- HEYZINE FLIPBOOK EMBEDDED DI AREA BACKGROUND PUTIH ABSTRAK -->
+        <!-- HEYZINE FLIPBOOK EMBEDDED -->
         <div class="flipbook-container">
-          <iframe allowfullscreen="true" allow="autoplay; fullscreen; clipboard-write" scrolling="no" class="fp-iframe" style="border: 2px solid #d0e4ff; border-radius: 20px; width: 100%; height: 100%; min-height: 380px; box-shadow: 0 12px 30px rgba(59,121,198,0.15);" src="https://heyzine.com/flip-book/f4e1fa9e01.html"></iframe>
+          <iframe allowfullscreen="true" allow="autoplay; fullscreen; clipboard-write" scrolling="no" class="fp-iframe" style="border: 2px solid #d0e4ff; border-radius: 20px; width: 100%; height: 100%; box-shadow: 0 12px 30px rgba(59,121,198,0.15);" src="https://heyzine.com/flip-book/f4e1fa9e01.html"></iframe>
         </div>
 
         <!-- FOOTER SOSMED & NEWSLETTER -->
@@ -398,8 +400,9 @@
           <a href="https://www.instagram.com/batasanku/" target="_blank" class="social-icon-btn" title="Instagram">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
+          <!-- TikTok Logo Fixed Path -->
           <a href="https://www.tiktok.com/@batasanku.id" target="_blank" class="social-icon-btn" title="TikTok">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.29 1.54-1.21 2.52.05.77.46 1.49 1.09 1.93.8.58 1.87.69 2.78.36.91-.32 1.63-1.08 1.83-2.02.08-.43.07-.88.07-1.32.01-4.77 0-9.54.01-14.31z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .56.04.83.12V9.3a6.33 6.33 0 0 0-1-.08 6.34 6.33 0 0 0-6.34 6.34 6.34 6.33 0 0 0 6.34 6.33 6.33 6.33 0 0 0 6.33-6.33V9a8.16 8.16 0 0 0 4.96 1.67V7.21a4.85 4.85 0 0 1-1.01-.52z"/></svg>
           </a>
           <a href="https://lnk.bio/batasanku.id" target="_blank" class="social-icon-btn" title="Toko & Link Resmi">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
@@ -438,8 +441,9 @@
           <a href="https://www.instagram.com/batasanku/" target="_blank" class="social-icon-btn" title="Instagram">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
+          <!-- TikTok Logo Fixed Path -->
           <a href="https://www.tiktok.com/@batasanku.id" target="_blank" class="social-icon-btn" title="TikTok">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.29 1.54-1.21 2.52.05.77.46 1.49 1.09 1.93.8.58 1.87.69 2.78.36.91-.32 1.63-1.08 1.83-2.02.08-.43.07-.88.07-1.32.01-4.77 0-9.54.01-14.31z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .56.04.83.12V9.3a6.33 6.33 0 0 0-1-.08 6.34 6.33 0 0 0-6.34 6.34 6.34 6.33 0 0 0 6.34 6.33 6.33 6.33 0 0 0 6.33-6.33V9a8.16 8.16 0 0 0 4.96 1.67V7.21a4.85 4.85 0 0 1-1.01-.52z"/></svg>
           </a>
           <a href="https://lnk.bio/batasanku.id" target="_blank" class="social-icon-btn" title="Toko & Link Resmi">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
